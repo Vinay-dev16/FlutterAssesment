@@ -23,10 +23,35 @@ class _UserListPageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFF2D0C6A),
       appBar: AppBar(
-        title: const Text('Users'),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: const Text(
+          'Users',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        centerTitle: true,
       ),
-      body: const UserListView(),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color(0xFF3B0FA3),
+              Color(0xFF2D0C6A),
+            ],
+          ),
+        ),
+        child: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          child: UserListView(),
+        ),
+      ),
     );
   }
 }

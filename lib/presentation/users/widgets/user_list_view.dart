@@ -63,7 +63,7 @@ class _UserListViewState extends State<UserListView> {
               if (index >= users.length) {
                 return const Padding(
                   padding: EdgeInsets.symmetric(vertical: 16.0),
-                  child: Center(child: CircularProgressIndicator()),
+                  child: Center(child: CircularProgressIndicator(color: Colors.white,)),
                 );
               }
 
@@ -73,10 +73,10 @@ class _UserListViewState extends State<UserListView> {
                 leading: CircleAvatar(
                   backgroundImage: NetworkImage(user.avatar),
                 ),
-                title: Text('${user.firstName} ${user.lastName}'),
-                subtitle: Text(user.email),
+                title: Text('${user.firstName} ${user.lastName}',style: TextStyle(color: Colors.white),),
+                subtitle: Text(user.email,style: TextStyle(color: Colors.white),),
                 trailing: IconButton(
-                  icon: const Icon(Icons.delete, color: Colors.red),
+                  icon: const Icon(Icons.delete, color: Colors.white),
                   onPressed: () {
                     context.read<UserListBloc>().add(
                           UserListUserDeleted(user.id),
