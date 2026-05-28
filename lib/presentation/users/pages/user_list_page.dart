@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../di/injection.dart';
+import '../../core/app_colors.dart';
+import '../../core/app_dimens.dart';
+import '../../core/app_text_styles.dart';
 import '../bloc/user_list_bloc.dart';
 import '../widgets/user_list_view.dart';
 
@@ -23,16 +26,13 @@ class _UserListPageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF2D0C6A),
+      backgroundColor: AppColors.primaryDark,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: const Text(
           'Users',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w600,
-          ),
+          style: AppTextStyles.appBarTitle,
         ),
         centerTitle: true,
       ),
@@ -42,13 +42,16 @@ class _UserListPageView extends StatelessWidget {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              Color(0xFF3B0FA3),
-              Color(0xFF2D0C6A),
+              AppColors.primary,
+              AppColors.primaryDark,
             ],
           ),
         ),
         child: const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          padding: EdgeInsets.symmetric(
+            horizontal: AppDimens.listHorizontalPadding,
+            vertical: AppDimens.listVerticalPadding,
+          ),
           child: UserListView(),
         ),
       ),

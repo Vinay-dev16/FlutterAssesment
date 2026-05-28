@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../di/injection.dart';
+import '../core/app_colors.dart';
+import '../core/app_dimens.dart';
+import '../core/app_text_styles.dart';
 import '../login/bloc/login_bloc.dart';
 import '../login/pages/login_page.dart';
 
@@ -58,7 +61,7 @@ class _SplashPageState extends State<SplashPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF2D0C6A),
+      backgroundColor: AppColors.primaryDark,
       body: Container(
         width: double.infinity,
         height: double.infinity,
@@ -67,8 +70,8 @@ class _SplashPageState extends State<SplashPage>
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              Color(0xFF3B0FA3),
-              Color(0xFF2D0C6A),
+              AppColors.primary,
+              AppColors.primaryDark,
             ],
           ),
         ),
@@ -91,50 +94,43 @@ class _SplashPageState extends State<SplashPage>
                   ScaleTransition(
                     scale: _scaleAnimation,
                     child: Container(
-                      width: 96,
-                      height: 96,
+                      width: AppDimens.splashLogoSize,
+                      height: AppDimens.splashLogoSize,
                       decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(28),
+                        color: AppColors.logoBackground,
+                        borderRadius: BorderRadius.circular(
+                          AppDimens.splashLogoBorderRadius,
+                        ),
                       ),
                       child: Center(
                         child: Text(
                           'F',
-                          style: TextStyle(
-                            color: const Color(0xFF3B0FA3),
+                          style: AppTextStyles.splashTitle.copyWith(
+                            color: AppColors.logoText,
                             fontSize: 48,
-                            fontWeight: FontWeight.w800,
                           ),
                         ),
                       ),
                     ),
                   ),
-                  const SizedBox(height: 32),
+                  const SizedBox(height: AppDimens.spacingXL),
                   const Text(
                     'Flutter Assessment',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 28,
-                      fontWeight: FontWeight.w700,
-                      letterSpacing: 0.5,
-                    ),
+                    style: AppTextStyles.splashTitle,
                   ),
-                  const SizedBox(height: 8),
-                  Text(
+                  const SizedBox(height: AppDimens.spacingS),
+                  const Text(
                     'Your daily companion',
-                    style: TextStyle(
-                      color: Colors.white.withOpacity(0.8),
-                      fontSize: 16,
-                    ),
+                    style: AppTextStyles.splashSubtitle,
                   ),
-                  const SizedBox(height: 32),
+                  const SizedBox(height: AppDimens.spacingXL),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       _buildDot(isActive: true),
-                      const SizedBox(width: 8),
+                      const SizedBox(width: AppDimens.spacingS),
                       _buildDot(),
-                      const SizedBox(width: 8),
+                      const SizedBox(width: AppDimens.spacingS),
                       _buildDot(),
                     ],
                   ),
@@ -153,7 +149,7 @@ class _SplashPageState extends State<SplashPage>
       height: size,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: Colors.white.withOpacity(opacity),
+        color: AppColors.cardBackground.withOpacity(opacity),
       ),
     );
   }
@@ -161,13 +157,13 @@ class _SplashPageState extends State<SplashPage>
   Widget _buildDot({bool isActive = false}) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 250),
-      width: 8,
-      height: 8,
+      width: AppDimens.indicatorDotSize,
+      height: AppDimens.indicatorDotSize,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: isActive
-            ? Colors.white
-            : Colors.white.withOpacity(0.5),
+            ? AppColors.textPrimaryOnPrimary
+            : AppColors.textPrimaryOnPrimary.withOpacity(0.5),
       ),
     );
   }

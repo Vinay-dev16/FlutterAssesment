@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../core/app_dimens.dart';
 import '../../login/bloc/login_bloc.dart';
 
 class LoginForm extends StatefulWidget {
@@ -49,7 +51,7 @@ class _LoginFormState extends State<LoginForm> {
                   return null;
                 },
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: AppDimens.spacingM),
               TextFormField(
                 controller: _passwordController,
                 decoration: const InputDecoration(
@@ -67,7 +69,7 @@ class _LoginFormState extends State<LoginForm> {
                   return null;
                 },
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: AppDimens.spacingL),
               ElevatedButton(
                 onPressed: isLoading
                     ? null

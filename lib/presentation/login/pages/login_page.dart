@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../core/app_colors.dart';
+import '../../core/app_dimens.dart';
+import '../../core/app_text_styles.dart';
 import '../bloc/login_bloc.dart';
 import '../widgets/login_form.dart';
 import '../../users/pages/user_list_page.dart';
@@ -11,7 +14,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF2D0C6A),
+      backgroundColor: AppColors.primaryDark,
       body: SafeArea(
         child: BlocListener<LoginBloc, LoginState>(
           listener: (context, state) {
@@ -25,53 +28,48 @@ class LoginPage extends StatelessWidget {
           },
           child: Center(
             child: SingleChildScrollView(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppDimens.screenPaddingH,
+                vertical: AppDimens.screenPaddingV,
+              ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const SizedBox(height: 24),
+                  const SizedBox(height: AppDimens.spacingL),
                   Container(
-                    width: 72,
-                    height: 72,
+                    width: AppDimens.logoSize,
+                    height: AppDimens.logoSize,
                     decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(24),
+                      color: AppColors.logoBackground,
+                      borderRadius:
+                          BorderRadius.circular(AppDimens.logoBorderRadius),
                     ),
-                    child: const Center(
+                    child: Center(
                       child: Text(
                         'F',
-                        style: TextStyle(
-                          color: Color(0xFF3B0FA3),
+                        style: AppTextStyles.loginTitle.copyWith(
+                          color: AppColors.logoText,
                           fontSize: 36,
-                          fontWeight: FontWeight.w800,
                         ),
                       ),
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: AppDimens.spacingM),
                   const Text(
                     'Welcome back',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.w700,
-                    ),
+                    style: AppTextStyles.loginTitle,
                   ),
-                  const SizedBox(height: 4),
-                  Text(
+                  const SizedBox(height: AppDimens.spacingXS),
+                  const Text(
                     'Sign in to continue',
-                    style: TextStyle(
-                      color: Colors.white.withOpacity(0.8),
-                      fontSize: 14,
-                    ),
+                    style: AppTextStyles.loginSubtitle,
                   ),
-                  const SizedBox(height: 32),
+                  const SizedBox(height: AppDimens.spacingXL),
                   Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(24),
+                      color: AppColors.cardBackground,
+                      borderRadius: BorderRadius.circular(AppDimens.cardRadius),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.15),
@@ -81,13 +79,15 @@ class LoginPage extends StatelessWidget {
                       ],
                     ),
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 24),
+                      horizontal: AppDimens.cardPaddingH,
+                      vertical: AppDimens.cardPaddingV,
+                    ),
                     child: BlocProvider.value(
                       value: context.read<LoginBloc>(),
                       child: const LoginForm(),
                     ),
                   ),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: AppDimens.spacingL),
                 ],
               ),
             ),

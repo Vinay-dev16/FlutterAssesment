@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../core/app_colors.dart';
+import '../../core/app_dimens.dart';
 import '../bloc/user_list_bloc.dart';
 
 class UserListView extends StatefulWidget {
@@ -62,8 +64,12 @@ class _UserListViewState extends State<UserListView> {
             itemBuilder: (context, index) {
               if (index >= users.length) {
                 return const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 16.0),
-                  child: Center(child: CircularProgressIndicator(color: Colors.white,)),
+                  padding: EdgeInsets.symmetric(vertical: AppDimens.spacingL),
+                  child: Center(
+                    child: CircularProgressIndicator(
+                      color: AppColors.textPrimaryOnPrimary,
+                    ),
+                  ),
                 );
               }
 
@@ -73,10 +79,16 @@ class _UserListViewState extends State<UserListView> {
                 leading: CircleAvatar(
                   backgroundImage: NetworkImage(user.avatar),
                 ),
-                title: Text('${user.firstName} ${user.lastName}',style: TextStyle(color: Colors.white),),
-                subtitle: Text(user.email,style: TextStyle(color: Colors.white),),
+                title: Text(
+                  '${user.firstName} ${user.lastName}',
+                  style: const TextStyle(color: AppColors.textPrimaryOnPrimary),
+                ),
+                subtitle: Text(
+                  user.email,
+                  style: const TextStyle(color: AppColors.textSecondaryOnPrimary),
+                ),
                 trailing: IconButton(
-                  icon: const Icon(Icons.delete, color: Colors.white),
+                  icon: const Icon(Icons.delete, color: AppColors.deleteIcon),
                   onPressed: () {
                     context.read<UserListBloc>().add(
                           UserListUserDeleted(user.id),
