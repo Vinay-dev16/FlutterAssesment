@@ -32,32 +32,17 @@ android {
     }
 
     buildTypes {
-        release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
-        }
-    }
-
-    flavorDimensions += "environment"
-
-    productFlavors {
-        create("dev") {
-            dimension = "environment"
+        debug {
+            // Debug build for local development
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-debug"
             manifestPlaceholders["appName"] = "Flutter Assessment Debug"
         }
 
-        create("qa") {
-            dimension = "environment"
-            applicationIdSuffix = ".qa"
-            versionNameSuffix = "-qa"
-            manifestPlaceholders["appName"] = "Flutter Assessment QA"
-        }
-
-        create("prod") {
-            dimension = "environment"
+        release {
+            // TODO: Replace with your own release signing config before publishing.
+            // For now this still uses the debug signing config so `flutter run --release` works.
+            signingConfig = signingConfigs.getByName("debug")
             manifestPlaceholders["appName"] = "Flutter Assessment"
         }
     }

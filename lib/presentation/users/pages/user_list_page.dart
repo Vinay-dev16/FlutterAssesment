@@ -4,7 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../di/injection.dart';
 import '../../core/app_colors.dart';
 import '../../core/app_dimens.dart';
-import '../../core/app_text_styles.dart';
+import '../../core/app_strings.dart';
+import '../../core/app_top_bar.dart';
 import '../bloc/user_list_bloc.dart';
 import '../widgets/user_list_view.dart';
 
@@ -27,24 +28,13 @@ class _UserListPageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primaryDark,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: const Text(
-          'Users',
-          style: AppTextStyles.appBarTitle,
-        ),
-        centerTitle: true,
-      ),
+      appBar: const AppTopBar(title: AppStrings.home),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [
-              AppColors.primary,
-              AppColors.primaryDark,
-            ],
+            colors: [AppColors.primary, AppColors.primaryDark],
           ),
         ),
         child: const Padding(

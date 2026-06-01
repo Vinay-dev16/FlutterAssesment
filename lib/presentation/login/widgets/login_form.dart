@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../core/app_dimens.dart';
+import '../../core/app_strings.dart';
 import '../../login/bloc/login_bloc.dart';
 
 class LoginForm extends StatefulWidget {
@@ -37,16 +38,16 @@ class _LoginFormState extends State<LoginForm> {
               TextFormField(
                 controller: _emailController,
                 decoration: const InputDecoration(
-                  labelText: 'Email',
+                  labelText: AppStrings.email,
                   border: OutlineInputBorder(),
                 ),
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter your email';
+                    return AppStrings.pleaseEnterEmail;
                   }
                   if (!value.contains('@')) {
-                    return 'Please enter a valid email';
+                    return AppStrings.pleaseEnterValidEmail;
                   }
                   return null;
                 },
@@ -55,16 +56,16 @@ class _LoginFormState extends State<LoginForm> {
               TextFormField(
                 controller: _passwordController,
                 decoration: const InputDecoration(
-                  labelText: 'Password',
+                  labelText: AppStrings.password,
                   border: OutlineInputBorder(),
                 ),
                 obscureText: true,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter your password';
+                    return AppStrings.pleaseEnterPassword;
                   }
                   if (value.length < 6) {
-                    return 'Password must be at least 6 characters';
+                    return AppStrings.passwordMinLength;
                   }
                   return null;
                 },
@@ -89,7 +90,7 @@ class _LoginFormState extends State<LoginForm> {
                         width: 20,
                         child: CircularProgressIndicator(strokeWidth: 2),
                       )
-                    : const Text('Login'),
+                    : const Text(AppStrings.login),
               ),
             ],
           ),

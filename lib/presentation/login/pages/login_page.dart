@@ -3,10 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../core/app_colors.dart';
 import '../../core/app_dimens.dart';
+import '../../core/app_strings.dart';
 import '../../core/app_text_styles.dart';
+import '../../users/pages/bottom_nav_shell_page.dart';
 import '../bloc/login_bloc.dart';
 import '../widgets/login_form.dart';
-import '../../users/pages/user_list_page.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -20,9 +21,7 @@ class LoginPage extends StatelessWidget {
           listener: (context, state) {
             if (state is LoginFailure) {
               Navigator.of(context).pushReplacement(
-                MaterialPageRoute(
-                  builder: (_) => const UserListPage(),
-                ),
+                MaterialPageRoute(builder: (_) => const BottomNavShellPage()),
               );
             }
           },
@@ -41,12 +40,13 @@ class LoginPage extends StatelessWidget {
                     height: AppDimens.logoSize,
                     decoration: BoxDecoration(
                       color: AppColors.logoBackground,
-                      borderRadius:
-                          BorderRadius.circular(AppDimens.logoBorderRadius),
+                      borderRadius: BorderRadius.circular(
+                        AppDimens.logoBorderRadius,
+                      ),
                     ),
                     child: Center(
                       child: Text(
-                        'F',
+                        AppStrings.logoText,
                         style: AppTextStyles.loginTitle.copyWith(
                           color: AppColors.logoText,
                           fontSize: 36,
@@ -55,13 +55,10 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: AppDimens.spacingM),
-                  const Text(
-                    'Welcome back',
-                    style: AppTextStyles.loginTitle,
-                  ),
+                  const Text(AppStrings.welcomeBack, style: AppTextStyles.loginTitle),
                   const SizedBox(height: AppDimens.spacingXS),
                   const Text(
-                    'Sign in to continue',
+                    AppStrings.signInToContinue,
                     style: AppTextStyles.loginSubtitle,
                   ),
                   const SizedBox(height: AppDimens.spacingXL),
