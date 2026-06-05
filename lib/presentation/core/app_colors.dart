@@ -12,4 +12,6 @@ class AppColors {
 
   static const Color cardBackground = Colors.white;
   static const Color deleteIcon = Colors.red;
+
+  static const Color bottomNavPink = Color(0xFFE91E8C);
 }

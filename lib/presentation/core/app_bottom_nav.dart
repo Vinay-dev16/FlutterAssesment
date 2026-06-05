@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'app_colors.dart';
 import 'app_strings.dart';
 
 class AppBottomNav extends StatelessWidget {
@@ -16,29 +17,71 @@ class AppBottomNav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      currentIndex: currentIndex,
-      onTap: onTap,
-      type: BottomNavigationBarType.fixed,
-      selectedItemColor: Colors.black,
-      unselectedItemColor: Colors.grey,
-      showUnselectedLabels: true,
-      items: [
-        const BottomNavigationBarItem(
-          icon: Icon(Icons.home_outlined),
-          activeIcon: Icon(Icons.home),
-          label: AppStrings.home,
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(24),
+        child: Container(
+          color: Colors.white,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              _buildNavItem(0, Icons.home_outlined, Icons.home, AppStrings.home),
+              _buildNavItem(1, Icons.edit_outlined, Icons.edit, AppStrings.form),
+              _buildNotificationItem(),
+              _buildNavItem(3, Icons.star_outline, Icons.star, AppStrings.form),
+              _buildNavItem(4, Icons.settings_rounded, Icons.settings_sharp, AppStrings.settings),
+            ],
+          ),
         ),
-        const BottomNavigationBarItem(
-          icon: Icon(Icons.edit_outlined),
-          activeIcon: Icon(Icons.edit),
-          label: AppStrings.form,
+      ),
+    );
+  }
+
+  Widget _buildNavItem(int index, IconData icon, IconData activeIcon, String label) {
+    final isActive = currentIndex == index;
+    return GestureDetector(
+      onTap: () => onTap(index),
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              isActive ? activeIcon : icon,
+              color: isActive ? AppColors.bottomNavPink : Colors.grey,
+              size: 28,
+            ),
+            const SizedBox(height: 2),
+            Text(
+              label,
+              style: TextStyle(
+                fontSize: 13,
+                color: isActive ? AppColors.bottomNavPink : Colors.grey,
+                height: 1.0,
+              ),
+            ),
+          ],
         ),
-        BottomNavigationBarItem(
-          icon: Stack(
+      ),
+    );
+  }
+
+  Widget _buildNotificationItem() {
+    final isActive = currentIndex == 2;
+    return GestureDetector(
+      onTap: () => onTap(2),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Stack(
             clipBehavior: Clip.none,
             children: [
-              const Icon(Icons.notifications_none),
+              Icon(
+                isActive ? Icons.notifications : Icons.notifications_none,
+                color: isActive ? AppColors.bottomNavPink : Colors.grey,
+                size: 28,
+              ),
               if (hasNotification)
                 Positioned(
                   right: -2,
@@ -54,38 +97,18 @@ class AppBottomNav extends StatelessWidget {
                 ),
             ],
           ),
-          activeIcon: Stack(
-            clipBehavior: Clip.none,
-            children: [
-              const Icon(Icons.notifications),
-              if (hasNotification)
-                Positioned(
-                  right: -2,
-                  top: -2,
-                  child: Container(
-                    width: 8,
-                    height: 8,
-                    decoration: const BoxDecoration(
-                      color: Colors.red,
-                      shape: BoxShape.circle,
-                    ),
-                  ),
-                ),
-            ],
+          const SizedBox(height: 2),
+          Text(
+            AppStrings.notifications,
+            style: TextStyle(
+              fontSize: 13,
+              color: isActive ? AppColors.bottomNavPink : Colors.grey,
+              height: 1.0,
+            ),
           ),
-          label: AppStrings.notifications,
-        ),
-        const BottomNavigationBarItem(
-          icon: Icon(Icons.person_outline),
-          activeIcon: Icon(Icons.person),
-          label: AppStrings.profile,
-        ),
-        const BottomNavigationBarItem(
-          icon: Icon(Icons.settings_outlined),
-          activeIcon: Icon(Icons.settings),
-          label: AppStrings.settings,
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
+

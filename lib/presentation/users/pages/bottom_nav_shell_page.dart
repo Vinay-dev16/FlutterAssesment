@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_assesment/presentation/settings/pages/settings_page.dart';
 
 import '../../core/app_bottom_nav.dart';
 import '../../forms/pages/form_page.dart';
 import '../../notifications/pages/notifications_page.dart';
-import '../../profile/pages/profile_page.dart';
-import '../../settings/pages/settings_page.dart';
+import '../widgets/favorites_page.dart';
 import 'user_list_page.dart';
 
 class BottomNavShellPage extends StatefulWidget {
@@ -25,20 +25,30 @@ class _BottomNavShellPageState extends State<BottomNavShellPage> {
       const UserListPage(),
       const FormPage(),
       const NotificationsPage(),
-      const ProfilePage(),
-      const SettingsPage(),
+      const FavoritesPage(),
+      const SettingsPage()
     ];
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: pages[_currentIndex],
-      bottomNavigationBar: AppBottomNav(
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
+      body: Stack(
+        children: [
+          pages[_currentIndex],
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
+              child: AppBottomNav(
+                currentIndex: _currentIndex,
+                onTap: (index) {
+                  setState(() {
+                    _currentIndex = index;
+                  });
+                },
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
