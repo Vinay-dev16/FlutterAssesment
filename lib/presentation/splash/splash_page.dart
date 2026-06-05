@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../di/injection.dart';
 import '../core/app_colors.dart';
 import '../core/app_dimens.dart';
+import '../core/app_strings.dart';
 import '../core/app_text_styles.dart';
 import '../login/bloc/login_bloc.dart';
 import '../login/pages/login_page.dart';
@@ -104,7 +105,7 @@ class _SplashPageState extends State<SplashPage>
                       ),
                       child: Center(
                         child: Text(
-                          'F',
+                          AppStrings.splashLogo,
                           style: AppTextStyles.splashTitle.copyWith(
                             color: AppColors.logoText,
                             fontSize: 48,

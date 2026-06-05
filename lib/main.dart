@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'di/injection.dart';
+import 'presentation/core/app_strings.dart';
 import 'presentation/splash/splash_page.dart';
 
 enum AppBuildVariant { debug, qa, release }
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      title: 'Clean Architecture Login',
+      title: AppStrings.appTitle,
       debugShowCheckedModeBanner: false,
       home: SplashPage(),
     );
